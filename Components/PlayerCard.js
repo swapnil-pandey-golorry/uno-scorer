@@ -26,7 +26,7 @@ const PlayerCard = (props) => {
                 currScore = currState[index]['score'] + 1;
               }
             });
-              console.log('hello')
+            console.log('hello');
             props.changeScore(currState);
           }}
         />
