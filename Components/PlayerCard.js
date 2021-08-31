@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 const PlayerCard = (props) => {
-  const [update, setUpdate] = useState(0);
   let id;
   for (let i = 0; i < props.allPlayers.length; i++) {
     if (props.allPlayers[i]['name'] == props.name) id = i;
@@ -10,19 +9,24 @@ const PlayerCard = (props) => {
   console.log(props.allPlayers[id]['score']);
   return (
     <View style = {styles.card}>
-      <Text style = {styles.playerDetails}>{props.name}: {props.score} </Text>
+      <View style = {styles.detailsContainer}>
+        <Text style = {styles.playerDetails}>{props.name}:       {props.score} </Text>
+      </View>
       <View style = {styles.buttonContainer}>
         <Button
           color = '#9aeb91'
           style = {styles.button}
           title = '+1'
           onPress = {() => {
+            const currScore = 0;
             const currState = props.allPlayers.slice();
             currState.forEach((part, index, theArray) => {
               if (currState[index]['name'] === props.name) {
                 currState[index]['score'] = currState[index]['score'] + 1;
+                currScore = currState[index]['score'] + 1;
               }
             });
+              console.log('hello')
             props.changeScore(currState);
           }}
         />
@@ -62,21 +66,32 @@ const PlayerCard = (props) => {
 const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
-    margin: 5,
   },
   button: {
-    elevation: 4,
+    elevation: 5,
     borderRadius: 10,
+  },
+  detailsContainer: {
+    margin: 4,
+    borderColor: '#384960',
+    borderWidth: 0.4,
+    borderRadius: 30,
   },
   playerDetails: {
     textAlign: 'center',
+    padding: 3,
+
   },
   card: {
     flex: 1,
     elevation: 2,
+
+    borderRadius: 5,
+    marginHorizontal: 10,
+    marginVertical: 5,
+    padding: 7,
   },
 });
 
