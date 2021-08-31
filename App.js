@@ -32,6 +32,8 @@ import {
 import PlayerCard from './Components/PlayerCard';
 
 const App = () => {
+  const [playerData, setPlayerData] = useState([]);
+  const [newPlayer, setNewPlayer] = useState('');
   const update = (state) => {
     setPlayerData(state);
   };
@@ -51,8 +53,7 @@ const App = () => {
     );
   };
 
-  const [playerData, setPlayerData] = useState([]);
-  const [newPlayer, setNewPlayer] = useState('');
+
 
   const handlePress = () => {
     const currState = playerData.slice();

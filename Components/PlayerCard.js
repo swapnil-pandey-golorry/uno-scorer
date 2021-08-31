@@ -10,21 +10,20 @@ const PlayerCard = (props) => {
   console.log(props.allPlayers[id]['score']);
   return (
     <View style = {styles.card}>
-      <Text style = {styles.playerDetails}>{props.name} : {props.score} </Text>
+      <Text style = {styles.playerDetails}>{props.name}: {props.score} </Text>
       <View style = {styles.buttonContainer}>
         <Button
           color = '#9aeb91'
           style = {styles.button}
           title = '+1'
           onPress = {() => {
-            const currState = props.allPlayers;
+            const currState = props.allPlayers.slice();
             currState.forEach((part, index, theArray) => {
               if (currState[index]['name'] === props.name) {
                 currState[index]['score'] = currState[index]['score'] + 1;
               }
             });
             props.changeScore(currState);
-            setUpdate(1 - update);
           }}
         />
         <Button
@@ -32,14 +31,13 @@ const PlayerCard = (props) => {
           style = {styles.button}
           title = '+10'
           onPress = {() => {
-            const currState = props.allPlayers;
+            const currState = props.allPlayers.slice();
             currState.forEach((part, index, theArray) => {
               if (currState[index]['name'] === props.name) {
                 currState[index]['score'] = currState[index]['score'] + 10;
               }
             });
             props.changeScore(currState);
-            setUpdate(1 - update);
           }}
         />
         <Button
@@ -47,14 +45,13 @@ const PlayerCard = (props) => {
           style = {styles.button}
           title = '+50'
           onPress = {() => {
-            const currState = props.allPlayers;
+            const currState = props.allPlayers.slice();
             currState.forEach((part, index, theArray) => {
               if (currState[index]['name'] === props.name) {
                 currState[index]['score'] = currState[index]['score'] + 50;
               }
             });
             props.changeScore(currState);
-            setUpdate(1 - update);
           }}
         />
       </View>
